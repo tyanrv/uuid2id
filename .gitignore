@@ -1,0 +1,8 @@
+/vendor/
+/key/
+/.env
+.idea/*
+.idea
+.phpunit.result.cache
+/.idea/*
+/.Makefile.swp

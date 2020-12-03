@@ -1,0 +1,9 @@
+/vendor/
+/key/
+/.env
+.idea/*
+.idea
+/.idea/*
+.phpunit.result.cache
+*.log
+config-cache.php
