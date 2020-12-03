@@ -24,6 +24,7 @@
         }
     },
     "scripts": {
+        "post-install-cmd": [],
         "app": "php bin/app.php --ansi"
     }
 }
