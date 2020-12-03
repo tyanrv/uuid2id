@@ -10,6 +10,9 @@ init:
 cmd:
 	docker-compose run --rm api-php-cli ${cmd}
 
+console:
+	docker-compose run --rm api-php-cli php bin/app.php ${args}
+
 composer-install:
 	docker-compose run --rm api-php-cli composer install
 
