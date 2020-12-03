@@ -19,8 +19,7 @@ $builder = new ContainerBuilder();
 $builder->addDefinitions([
     'config' => [
         'debug' => (bool)getenv('APP_DEBUG')
-    ],
-    ResponseFactoryInterface::class => DI\get(ResponseFactory::class)
+    ]
 ]);
 
 $container = $builder->build();
@@ -29,10 +28,6 @@ $app = AppFactory::createFromContainer($container);
 
 $app->addErrorMiddleware($container->get('config')['debug'], true, true);
 
-$app->get('/', function (RequestInterface $request, ResponseInterface $response, $args) {
-    $response->getBody()->write('{}');
-    return $response->withHeader('Content-Type', 'application/json');
-});
-$app->get('/home', HomeAction::class);
+$app->get('/', HomeAction::class);
 
 $app->run();
