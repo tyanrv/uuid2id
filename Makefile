@@ -34,6 +34,10 @@ composer-cmd:
 phinx:
 	docker-compose run --rm api-php-cli vendor/bin/phinx ${arg}
 
+phpunit:
+	docker-compose run --rm api-php-cli vendor/bin/phpunit ${arg}
+
+
 doctrine:
 	docker-compose run --rm api-php-cli vendor/bin/doctrine ${arg}
 
