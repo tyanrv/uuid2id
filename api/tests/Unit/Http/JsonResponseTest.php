@@ -23,10 +23,11 @@ class JsonResponseTest extends TestCase
         self::assertEquals(200, $response->getStatusCode());
     }
 
-    public function testIntWithCode(): void
+    public function testWithCode(): void
     {
         $response = new JsonResponse(12, 201);
 
+        self::assertEquals('application/json', $response->getHeaderLine('Content-Type'));
         self::assertEquals('12', $response->getBody()->getContents());
         self::assertEquals(201, $response->getStatusCode());
     }
