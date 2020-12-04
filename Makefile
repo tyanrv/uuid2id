@@ -31,12 +31,6 @@ composer-remove:
 composer-cmd:
 	docker-compose run --rm api-php-cli composer ${arg}
 
-phpcbf:
-	docker-compose run --rm api-php-cli vendor/bin/phpcbf Module2/Unit2/src
-
-phpcs:
-	docker-compose run --rm api-php-cli vendor/bin/phpcs Module2/Unit2/src
-
 phinx:
 	docker-compose run --rm api-php-cli vendor/bin/phinx ${arg}
 

@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-
 namespace App\Http;
-
 
 use Fig\Http\Message\StatusCodeInterface;
 use Slim\Psr7\Factory\StreamFactory;
