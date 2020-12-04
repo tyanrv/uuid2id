@@ -18,11 +18,6 @@ RUN composer install --no-dev --prefer-dist --no-progress --no-suggest --no-scri
 
 FROM php:7.4-cli-alpine
 
-RUN apk add autoconf g++ make \
-    && pecl install xdebug \
-    && rm -rf /tmp/pear \
-    && docker-php-ext-enable xdebug
-
 RUN apk add postgresql-dev bash coreutils \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install pdo_pgsql
