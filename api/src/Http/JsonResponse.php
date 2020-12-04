@@ -11,6 +11,11 @@ use Slim\Psr7\Response;
 
 class JsonResponse extends Response
 {
+    /**
+     * JsonResponse constructor.
+     * @param mixed $data
+     * @param int $status
+     */
     public function __construct($data, int $status = StatusCodeInterface::STATUS_OK)
     {
         parent::__construct(
