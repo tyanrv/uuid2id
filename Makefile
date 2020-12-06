@@ -1,8 +1,20 @@
+check: lint analyze test
+lint: api-lint
+analyze: api-analyze
+test: api-test
+
 php-cli:
 	docker-compose run --rm api-php-cli php cli.php ${args}
 
-test:
+api-test:
 	docker-compose run --rm api-php-cli composer test
+
+api-lint:
+	docker-compose run --rm api-php-cli composer lint
+	docker-compose run --rm api-php-cli composer cs-check
+
+api-analyze:
+	docker-compose run --rm api-php-cli composer psalm
 
 init:
 	docker-compose up -d
@@ -13,21 +25,6 @@ cmd:
 console:
 	docker-compose run --rm api-php-cli php bin/app.php ${args}
 
-composer-install:
-	docker-compose run --rm api-php-cli composer install
-
-composer-autoload:
-	docker-compose run --rm api-php-cli composer dump-autoload
-
-composer-update:
-	docker-compose run --rm api-php-cli composer update
-
-composer-require:
-	docker-compose run --rm api-php-cli composer require ${arg}
-
-composer-remove:
-	docker-compose run --rm api-php-cli composer remove ${arg}
-
 composer-cmd:
 	docker-compose run --rm api-php-cli composer ${arg}
 
@@ -36,7 +33,6 @@ phinx:
 
 phpunit:
 	docker-compose run --rm api-php-cli vendor/bin/phpunit ${arg}
-
 
 doctrine:
 	docker-compose run --rm api-php-cli vendor/bin/doctrine ${arg}
