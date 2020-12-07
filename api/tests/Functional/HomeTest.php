@@ -22,7 +22,7 @@ class HomeTest extends WebTestCase
 
     public function testMethod(): void
     {
-        $response = $this->app()->handle(self::json('POST', '/'));
+        $response = $this->app()->handle($this->json('POST', '/'));
 
         self::assertEquals(405, $response->getStatusCode());
     }
