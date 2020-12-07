@@ -2,9 +2,11 @@ check: lint analyze test
 lint: api-lint
 analyze: api-analyze
 test: api-test
+test-coverage: api-test-coverage
 test-unit: api-test-unit
-test-functional: api-test-functional
 test-unit-coverage: api-test-unit-coverage
+test-functional: api-test-functional
+test-functional-coverage: api-test-functional-coverage
 
 php-cli:
 	docker-compose run --rm api-php-cli php cli.php ${args}
@@ -12,14 +14,20 @@ php-cli:
 api-test:
 	docker-compose run --rm api-php-cli composer test
 
+api-test-coverage:
+	docker-compose run --rm api-php-cli composer test-coverage
+
 api-test-unit:
 	docker-compose run --rm api-php-cli composer test -- --testsuite=unit
+
+api-test-unit-coverage:
+	docker-compose run --rm api-php-cli composer test-coverage -- --testsuite=unit
 
 api-test-functional:
 	docker-compose run --rm api-php-cli composer test -- --testsuite=functional
 
-api-test-unit-coverage:
-	docker-compose run --rm api-php-cli composer test-unit-coverage
+api-test-functional-coverage:
+	docker-compose run --rm api-php-cli composer test-coverage -- --testsuite=functional
 
 api-lint:
 	docker-compose run --rm api-php-cli composer lint

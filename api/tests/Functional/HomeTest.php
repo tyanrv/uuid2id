@@ -4,11 +4,6 @@
 namespace Test\Functional;
 
 
-/**
- * Class HomeTest
- * @package Test\Functional
- * @covers \App\Http\Action\HomeAction
- */
 class HomeTest extends WebTestCase
 {
     public function testSuccess(): void

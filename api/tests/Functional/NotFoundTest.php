@@ -3,11 +3,7 @@
 
 namespace Test\Functional;
 
-/**
- * Class NotFoundTest
- * @package Test\Functional
- * @coversNothing
- */
+
 class NotFoundTest extends WebTestCase
 {
     public function testNotFound(): void
