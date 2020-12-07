@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
@@ -18,6 +20,13 @@ $cli = new Application('Console');
  * @psalm-suppress MixedArrayAccess
  */
 $commands = $container->get('config')['console']['commands'];
+
+/** @var EntityManagerInterface $entityManager */
+$entityManager = $container->get(EntityManagerInterface::class);
+$cli->getHelperSet()->set(new EntityManagerHelper($entityManager), 'em');
+
+//ConsoleRunner::addCommands($cli);
+
 
 foreach ($commands as $name) {
     /** @var Command $command */
