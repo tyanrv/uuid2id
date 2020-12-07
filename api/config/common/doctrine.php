@@ -24,7 +24,6 @@ return [
          * } $settings
          */
         $settings = $container->get('config')['doctrine'];
-        var_dump($settings['cache_dir']);
         $config = Setup::createAnnotationMetadataConfiguration(
             $settings['metadata_dirs'],
             $settings['dev_mode'],

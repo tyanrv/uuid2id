@@ -2,17 +2,15 @@
 
 declare(strict_types=1);
 
-use App\Console\HelloCommand;
 use Doctrine\ORM\Tools\Console\Command\SchemaTool\CreateCommand;
-use Doctrine\ORM\Tools\Console\Command\ValidateSchemaCommand;
+use Doctrine\ORM\Tools\Console\Command\SchemaTool\DropCommand;
 
 return [
     'config' => [
         'console' => [
             'commands' => [
-                HelloCommand::class,
-                ValidateSchemaCommand::class,
-                CreateCommand::class
+                CreateCommand::class,
+                DropCommand::class
             ]
         ]
     ]

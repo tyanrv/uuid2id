@@ -20,7 +20,6 @@ $cli = new Application('Console');
  * @psalm-suppress MixedArrayAccess
  */
 $commands = $container->get('config')['console']['commands'];
-
 /** @var EntityManagerInterface $entityManager */
 $entityManager = $container->get(EntityManagerInterface::class);
 $cli->getHelperSet()->set(new EntityManagerHelper($entityManager), 'em');
