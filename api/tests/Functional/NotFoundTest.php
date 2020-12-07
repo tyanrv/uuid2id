@@ -6,7 +6,7 @@ namespace Test\Functional;
 /**
  * Class NotFoundTest
  * @package Test\Functional
- * @covers
+ * @coversNothing
  */
 class NotFoundTest extends WebTestCase
 {
