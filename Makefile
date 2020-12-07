@@ -39,6 +39,9 @@ api-analyze:
 init:
 	docker-compose up -d
 
+api-clear:
+	docker run --rm -v ${PWD}/api:/app -w /app alpine sh -c 'rm -rf var/*'
+
 cmd:
 	docker-compose run --rm api-php-cli ${cmd}
 
