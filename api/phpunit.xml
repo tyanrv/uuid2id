@@ -14,6 +14,7 @@
         <testsuite name="unit">
             <directory suffix="Test.php">tests/Unit</directory>
             <directory suffix="Test.php">src/Model/Transformer/Test/Type</directory>
+            <directory suffix="Test.php">src/Model/Transformer/Test/Entity</directory>
         </testsuite>
         <testsuite name="functional">
             <directory suffix="Test.php">tests/Functional</directory>

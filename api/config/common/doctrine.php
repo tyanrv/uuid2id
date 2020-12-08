@@ -2,8 +2,13 @@
 
 declare(strict_types=1);
 
+use App\Infrastructure\Doctrine\Factory\DiffCommandFactory;
+use App\Infrastructure\Doctrine\Type\Transformer\IdTypeDb;
+use App\Infrastructure\Doctrine\Type\Transformer\UUIDTypeDb;
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\FilesystemCache;
+use Doctrine\DBAL\Types\Type;
+use Doctrine\Migrations\Tools\Console\Command\DiffCommand;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
@@ -34,11 +39,19 @@ return [
 
         $config->setNamingStrategy(new UnderscoreNamingStrategy());
 
+        foreach ($settings['types'] as $name => $class) {
+            if (!Type::hasType($name)) {
+                Type::addType($name, $class);
+            }
+        }
+
         return EntityManager::create(
             $settings['connection'],
             $config
         );
     },
+
+    DiffCommand::class => DI\factory(DiffCommandFactory::class),
 
     'config' => [
         'doctrine' => [
@@ -53,7 +66,14 @@ return [
                 'dbname' => getenv('DB_NAME'),
                 'charset' => 'utf-8'
             ],
-            'metadata_dirs' => [],
+            'metadata_dirs' => [
+                __DIR__ . '/../../src/Model/Transformer/Entity/GoodsTransformer',
+                __DIR__ . '/../../src/Model/Transformer/Entity/UserTransformer'
+            ],
+            'types' => [
+                IdTypeDb::NAME => IdTypeDb::class,
+                UUIDTypeDb::NAME => UUIDTypeDb::class
+            ]
         ],
     ],
 ];
