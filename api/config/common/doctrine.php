@@ -2,56 +2,13 @@
 
 declare(strict_types=1);
 
-use App\Infrastructure\Doctrine\Factory\DiffCommandFactory;
+use App\Infrastructure\Doctrine\Factory\EntityManagerFactory;
 use App\Infrastructure\Doctrine\Type\Transformer\IdTypeDb;
 use App\Infrastructure\Doctrine\Type\Transformer\UUIDTypeDb;
-use Doctrine\Common\Cache\ArrayCache;
-use Doctrine\Common\Cache\FilesystemCache;
-use Doctrine\DBAL\Types\Type;
-use Doctrine\Migrations\Tools\Console\Command\DiffCommand;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
-use Doctrine\ORM\Tools\Setup;
-use Psr\Container\ContainerInterface;
 
 return [
-    EntityManagerInterface::class => function (ContainerInterface $container) {
-        /**
-         * @psalm-suppress MixedArrayAccess
-         * @psalm-var array{
-         *      metadata_dirs:array,
-         *      dev_mode:bool,
-         *      proxy_dir:string,
-         *      cache_dir:?string,
-         *      types:array<string,string>,
-         *      connection:array
-         * } $settings
-         */
-        $settings = $container->get('config')['doctrine'];
-        $config = Setup::createAnnotationMetadataConfiguration(
-            $settings['metadata_dirs'],
-            $settings['dev_mode'],
-            $settings['proxy_dir'],
-            $settings['cache_dir'] ? new FilesystemCache($settings['cache_dir']) : new ArrayCache(),
-            false
-        );
-
-        $config->setNamingStrategy(new UnderscoreNamingStrategy());
-
-        foreach ($settings['types'] as $name => $class) {
-            if (!Type::hasType($name)) {
-                Type::addType($name, $class);
-            }
-        }
-
-        return EntityManager::create(
-            $settings['connection'],
-            $config
-        );
-    },
-
-    DiffCommand::class => DI\factory(DiffCommandFactory::class),
+    EntityManagerInterface::class => DI\factory(EntityManagerFactory::class),
 
     'config' => [
         'doctrine' => [
