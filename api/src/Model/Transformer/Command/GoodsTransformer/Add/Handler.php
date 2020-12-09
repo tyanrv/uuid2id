@@ -8,6 +8,7 @@ use App\Flusher\Flusher;
 use App\Model\Transformer\Entity\GoodsTransformer\GoodsTransformer;
 use App\Model\Transformer\Entity\GoodsTransformer\GoodsTransformerRepository;
 use App\Model\Transformer\Type\UUIDType;
+use DomainException;
 
 class Handler
 {
@@ -25,6 +26,11 @@ class Handler
     public function handle(Command $command): void
     {
         $uuidType = new UUIDType($command->uuid);
+
+        if ($this->repository->hasByUUID($uuidType)) {
+            throw new DomainException('Goods Transformer with this UUID already exists.');
+        }
+
         $goodsTransformer = GoodsTransformer::createFromUUID($uuidType);
 
         $this->repository->add($goodsTransformer);
