@@ -11,6 +11,14 @@ test-functional-coverage: api-test-functional-coverage
 php-cli:
 	docker-compose run --rm api-php-cli php cli.php ${args}
 
+api-init: api-permissions api-composer-install api-wait-db api-migrations
+
+api-permissions:
+	docker-compose run --rm -v ${PWD}/api:/app -w /app alpine chmod 777 var
+
+api-composer-install:
+	docker-compose run --rm api-php-cli composer install
+
 api-test:
 	docker-compose run --rm api-php-cli composer test
 
@@ -35,6 +43,12 @@ api-lint:
 
 api-analyze:
 	docker-compose run --rm api-php-cli composer psalm
+
+api-wait-db:
+	docker-compose run --rm api-php-cli wait-for-it api-postgres:5432 -t 30
+
+api-migrations:
+	docker-compose run --rm api-php-cli php bin/app.php migrations:migrate
 
 init:
 	docker-compose up -d
