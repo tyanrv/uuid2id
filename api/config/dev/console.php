@@ -10,14 +10,12 @@ use Doctrine\Migrations\Tools\Console\Command\MigrateCommand;
 use Doctrine\Migrations\Tools\Console\Command\StatusCommand;
 use Doctrine\Migrations\Tools\Console\Command\UpToDateCommand;
 use Doctrine\Migrations\Tools\Console\Command\VersionCommand;
-use Doctrine\ORM\Tools\Console\Command\SchemaTool\CreateCommand;
 use Doctrine\ORM\Tools\Console\Command\SchemaTool\DropCommand;
 
 return [
     'config' => [
         'console' => [
             'commands' => [
-                CreateCommand::class,
                 DropCommand::class,
                 ExecuteCommand::class,
                 GenerateCommand::class,
