@@ -36,7 +36,8 @@ return [
                 VersionCommand::class,
             ],
             'fixture_paths' => [
-                __DIR__ . '/../../src/Model/Transformer/Fixture'
+                __DIR__ . '/../../tests/Functional/Api/Transformer/GoodsTransformer/Fixture',
+                __DIR__ . '/../../tests/Functional/Api/Transformer/UserTransformer/Fixture',
             ]
         ]
     ]

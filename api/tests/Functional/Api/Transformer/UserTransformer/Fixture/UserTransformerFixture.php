@@ -8,18 +8,22 @@ use App\Model\Transformer\Entity\UserTransformer\UserTransformer;
 use App\Model\Transformer\Type\UUIDType;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Persistence\ObjectManager;
+use Ramsey\Uuid\Uuid;
 
 class UserTransformerFixture extends AbstractFixture
 {
-    public const UUID_1 = '872553ec-5e23-4952-ae01-edfe998b4e4f';
-    public const UUID_2 = '9a8d99a1-1952-4e85-8337-96e55b9d595c';
+    public static string $UUID_1;
+    public static string $UUID_2;
 
     public function load(ObjectManager $manager)
     {
-        $uuidType = new UUIDType(self::UUID_1);
+        self::$UUID_1 = Uuid::uuid4()->toString();
+        self::$UUID_2 = Uuid::uuid4()->toString();
+
+        $uuidType = new UUIDType(self::$UUID_1);
         $userTransformer = UserTransformer::createFromUUID($uuidType);
 
-        $uuidType2 = new UUIDType(self::UUID_2);
+        $uuidType2 = new UUIDType(self::$UUID_2);
         $userTransformer2 = UserTransformer::createFromUUID($uuidType2);
 
         $manager->persist($userTransformer);

@@ -75,7 +75,6 @@ class WebTestCase extends TestCase
         $em = $container->get(EntityManagerInterface::class);
         $executor = new ORMExecutor($em, new ORMPurger($em));
         $executor->execute($loader->getFixtures());
-
         $em->getConnection()->close();
     }
 

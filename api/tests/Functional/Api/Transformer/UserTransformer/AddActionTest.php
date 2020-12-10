@@ -43,11 +43,10 @@ class AddActionTest extends WebTestCase
 
     public function testAlreadyExists(): void
     {
-        $uuid = UserTransformerFixture::UUID_1;
+        $uuid = UserTransformerFixture::$UUID_1;
 
         $response = $this->app()->handle(self::json('POST', $this->url, ['uuid' => $uuid]));
         $data = json_decode($response->getBody()->getContents(), true);
-
 
         self::assertEquals(409, $response->getStatusCode());
         self::assertEquals(
