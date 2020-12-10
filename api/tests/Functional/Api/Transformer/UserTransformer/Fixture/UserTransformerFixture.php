@@ -6,6 +6,7 @@ namespace Test\Functional\Api\Transformer\UserTransformer\Fixture;
 
 use App\Model\Transformer\Entity\UserTransformer\UserTransformer;
 use App\Model\Transformer\Type\UUIDType;
+use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
@@ -21,10 +22,10 @@ class UserTransformerFixture extends AbstractFixture
         self::$UUID_2 = Uuid::uuid4()->toString();
 
         $uuidType = new UUIDType(self::$UUID_1);
-        $userTransformer = UserTransformer::createFromUUID($uuidType);
+        $userTransformer = UserTransformer::createFromUUID($uuidType, new DateTimeImmutable());
 
         $uuidType2 = new UUIDType(self::$UUID_2);
-        $userTransformer2 = UserTransformer::createFromUUID($uuidType2);
+        $userTransformer2 = UserTransformer::createFromUUID($uuidType2, new DateTimeImmutable());
 
         $manager->persist($userTransformer);
         $manager->persist($userTransformer2);

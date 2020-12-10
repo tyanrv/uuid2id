@@ -15,7 +15,7 @@ php-cli:
 api-init: api-composer-install api-wait-db api-migrations api-fixtures
 
 api-permissions:
-	docker-compose run --rm -v ${PWD}/api:/app -w /app alpine chmod 777 var
+	docker-compose run --rm -v ${PWD}/api:/app -w /app alpine chmod 777 var/cache var/log
 
 api-composer-install:
 	docker-compose run --rm api-php-cli composer install

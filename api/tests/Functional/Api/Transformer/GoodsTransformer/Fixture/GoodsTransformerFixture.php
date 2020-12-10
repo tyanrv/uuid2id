@@ -6,6 +6,7 @@ namespace Test\Functional\Api\Transformer\GoodsTransformer\Fixture;
 
 use App\Model\Transformer\Entity\GoodsTransformer\GoodsTransformer;
 use App\Model\Transformer\Type\UUIDType;
+use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
@@ -21,10 +22,10 @@ class GoodsTransformerFixture extends AbstractFixture
         self::$UUID_2 = Uuid::uuid4()->toString();
 
         $uuidType = new UUIDType(self::$UUID_1);
-        $goodsTransformer = GoodsTransformer::createFromUUID($uuidType);
+        $goodsTransformer = GoodsTransformer::createFromUUID($uuidType, new DateTimeImmutable());
 
         $uuidType2 = new UUIDType(self::$UUID_2);
-        $goodsTransformer2 = GoodsTransformer::createFromUUID($uuidType2);
+        $goodsTransformer2 = GoodsTransformer::createFromUUID($uuidType2, new DateTimeImmutable());
 
         $manager->persist($goodsTransformer);
         $manager->persist($goodsTransformer2);
