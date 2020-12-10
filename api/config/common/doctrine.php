@@ -23,6 +23,7 @@ return [
                 'dbname' => getenv('DB_NAME'),
                 'charset' => 'utf-8'
             ],
+            'subscribers' => [],
             'metadata_dirs' => [
                 __DIR__ . '/../../src/Model/Transformer/Entity/GoodsTransformer',
                 __DIR__ . '/../../src/Model/Transformer/Entity/UserTransformer'

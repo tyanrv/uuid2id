@@ -29,6 +29,7 @@ $configuration = new Configuration($connection);
 $configuration->setMigrationsDirectory(__DIR__ . '/../db/migrations');
 $configuration->setMigrationsNamespace('Migration');
 $configuration->setAllOrNothing(true);
+$configuration->setCheckDatabasePlatform(true);
 
 $cli->getHelperSet()->set(new EntityManagerHelper($entityManager), 'em');
 $cli->getHelperSet()->set(new ConfigurationHelper($connection, $configuration), 'configuration');
