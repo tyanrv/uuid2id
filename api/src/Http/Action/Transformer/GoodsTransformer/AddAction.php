@@ -39,6 +39,6 @@ class AddAction implements RequestHandlerInterface
 
         $this->handler->handle($command);
 
-        return new EmptyResponse(201);
+        return new EmptyResponse(200);
     }
 }

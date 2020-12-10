@@ -7,11 +7,12 @@ test-unit: api-test-unit
 test-unit-coverage: api-test-unit-coverage
 test-functional: api-test-functional
 test-functional-coverage: api-test-functional-coverage
+app-init: init api-init
 
 php-cli:
 	docker-compose run --rm api-php-cli php cli.php ${args}
 
-api-init: api-permissions api-composer-install api-wait-db api-migrations
+api-init: api-composer-install api-wait-db api-migrations api-fixtures
 
 api-permissions:
 	docker-compose run --rm -v ${PWD}/api:/app -w /app alpine chmod 777 var
@@ -49,6 +50,9 @@ api-wait-db:
 
 api-migrations:
 	docker-compose run --rm api-php-cli php bin/app.php migrations:migrate
+
+api-fixtures:
+	docker-compose run --rm api-php-cli php bin/app.php fixtures:load
 
 init:
 	docker-compose up -d
