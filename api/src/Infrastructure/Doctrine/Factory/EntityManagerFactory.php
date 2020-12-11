@@ -27,6 +27,7 @@ class EntityManagerFactory
          *      cache_dir:?string,
          *      types:array<string,string>,
          *      connection:array,
+         *      subscribers:array
          * } $settings
          */
         $settings = $container->get('config')['doctrine'];
@@ -53,7 +54,7 @@ class EntityManagerFactory
         $eventManager = new EventManager();
 
         /**
-         * @var Type[] $subscribers
+         * @var string[] $subscribers
          */
         $subscribers = $settings['subscribers'];
         foreach ($subscribers as $name) {

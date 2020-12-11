@@ -13,18 +13,17 @@ class UUIDTypeDb extends GuidType
     public const NAME = 'uuid_type';
 
     /**
-     * @param UUIDType|string|int $value
+     * @param mixed $value
      * @param AbstractPlatform $platform
      * @return string
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
-        /** @var UUIDType $value */
         return $value instanceof UUIDType ? $value->getValue() : (string)$value;
     }
 
     /**
-     * @param string|int|null $value
+     * @param mixed $value
      * @param AbstractPlatform $platform
      * @return UUIDType|null
      */

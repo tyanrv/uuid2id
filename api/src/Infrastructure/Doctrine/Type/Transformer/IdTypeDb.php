@@ -13,18 +13,17 @@ class IdTypeDb extends IntegerType
     public const NAME = 'id_type';
 
     /**
-     * @param IdType|string|int $value
+     * @param mixed $value
      * @param AbstractPlatform $platform
      * @return int
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform): int
     {
-        /** @var IdType $value */
         return $value instanceof IdType ? $value->getValue() : (int)$value;
     }
 
     /**
-     * @param string|int|null $value
+     * @param mixed $value
      * @param AbstractPlatform $platform
      * @return IdType|null
      */
