@@ -7,6 +7,7 @@ namespace App\Model\Transformer\Entity\GoodsTransformer;
 use App\Model\Transformer\Type\UUIDType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use DomainException;
 
 class GoodsTransformerRepository
 {
@@ -39,5 +40,15 @@ class GoodsTransformerRepository
                 ->setParameter(':uuid', $uuid)
                 ->getQuery()
                 ->getSingleScalarResult() > 0;
+    }
+
+    public function getByUUID(UUIDType $uuid): GoodsTransformer
+    {
+        if (!$goodsTransformer = $this->repository->findOneBy(['uuid' => $uuid->getValue()])) {
+            throw new DomainException('The Goods Transformer not found.');
+        }
+
+        /** @var GoodsTransformer $goodsTransformer */
+        return $goodsTransformer;
     }
 }

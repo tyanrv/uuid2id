@@ -59,6 +59,14 @@ class GoodsTransformer
         return $this->uuid;
     }
 
+    /**
+     * @return DateTimeImmutable
+     */
+    public function getCreatedAt(): DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
     public static function createFromUUID(UUIDType $uuid, DateTimeImmutable $createdAt): self
     {
         return new self($uuid, $createdAt);
