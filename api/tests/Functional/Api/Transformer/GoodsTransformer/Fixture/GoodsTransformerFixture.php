@@ -16,7 +16,7 @@ class GoodsTransformerFixture extends AbstractFixture
     public static string $UUID_1 = '';
     public static string $UUID_2 = '';
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         self::$UUID_1 = Uuid::uuid4()->toString();
         self::$UUID_2 = Uuid::uuid4()->toString();

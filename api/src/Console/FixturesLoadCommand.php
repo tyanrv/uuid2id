@@ -32,7 +32,7 @@ class FixturesLoadCommand extends Command
         $this->paths = $paths;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('fixtures:load')

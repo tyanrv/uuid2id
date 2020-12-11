@@ -14,10 +14,10 @@ class DiffCommandFactory
 {
     public function __invoke(ContainerInterface $container): Command
     {
+        /** @var EntityManagerInterface $em */
+        $em = $container->get(EntityManagerInterface::class);
         return new DiffCommand(
-            new OrmSchemaProvider(
-                $container->get(EntityManagerInterface::class)
-            )
+            new OrmSchemaProvider($em)
         );
     }
 }

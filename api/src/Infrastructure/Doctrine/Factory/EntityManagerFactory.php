@@ -26,7 +26,7 @@ class EntityManagerFactory
          *      proxy_dir:string,
          *      cache_dir:?string,
          *      types:array<string,string>,
-         *      connection:array
+         *      connection:array,
          * } $settings
          */
         $settings = $container->get('config')['doctrine'];
@@ -40,6 +40,10 @@ class EntityManagerFactory
 
         $config->setNamingStrategy(new UnderscoreNamingStrategy());
 
+        /**
+         * @var string $name
+         * @var class-string<Type> $class
+         */
         foreach ($settings['types'] as $name => $class) {
             if (!Type::hasType($name)) {
                 Type::addType($name, $class);
@@ -48,7 +52,11 @@ class EntityManagerFactory
 
         $eventManager = new EventManager();
 
-        foreach ($settings['subscribers'] as $name) {
+        /**
+         * @var Type[] $subscribers
+         */
+        $subscribers = $settings['subscribers'];
+        foreach ($subscribers as $name) {
             /** @var EventSubscriber $subscriber */
             $subscriber = $container->get($name);
             $eventManager->addEventSubscriber($subscriber);

@@ -12,5 +12,5 @@ class Command
      * @Assert\NotBlank()
      * @Assert\Uuid()
      */
-    public string $uuid;
+    public string $uuid = '';
 }

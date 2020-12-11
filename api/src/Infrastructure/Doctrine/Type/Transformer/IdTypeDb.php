@@ -12,12 +12,22 @@ class IdTypeDb extends IntegerType
 {
     public const NAME = 'id_type';
 
+    /**
+     * @param IdType|string|int $value
+     * @param AbstractPlatform $platform
+     * @return int
+     */
     public function convertToDatabaseValue($value, AbstractPlatform $platform): int
     {
         /** @var IdType $value */
         return $value instanceof IdType ? $value->getValue() : (int)$value;
     }
 
+    /**
+     * @param string|int|null $value
+     * @param AbstractPlatform $platform
+     * @return IdType|null
+     */
     public function convertToPHPValue($value, AbstractPlatform $platform): ?IdType
     {
         return !empty($value) ? new IdType((int)$value) : null;
