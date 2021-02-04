@@ -54,7 +54,7 @@ class WebTestCase extends TestCase
 
     protected static function request(string $method, string $path): ServerRequestInterface
     {
-        return (new ServerRequestFactory())->createServerRequest($method, $path);
+        return (new ServerRequestFactory())->createServerRequest($method, $path, ['REMOTE_ADDR' => '99.99.99.99']);
     }
 
     /**

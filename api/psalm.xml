@@ -18,5 +18,11 @@
 
     <issueHandlers>
         <LessSpecificReturnType errorLevel="info"/>
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+                <directory name="src/Model/Transformer/Test" />
+            </errorLevel>
+        </PropertyNotSetInConstructor>
     </issueHandlers>
 </psalm>

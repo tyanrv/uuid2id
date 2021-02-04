@@ -23,7 +23,6 @@ class IpAccessMiddleware implements MiddlewareInterface
     {
         /** @var string $ipAddress */
         $ipAddress = $request->getAttribute('ip_address');
-
         if (in_array($ipAddress, $this->trusted)) {
             return $handler->handle($request);
         }

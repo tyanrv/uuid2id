@@ -13,7 +13,7 @@ class UUIDType
     public function __construct(string $value)
     {
         Assert::notEmpty($value, 'The value cannot be empty.');
-        Assert::string($value, 'The value must be string type.');
+//        Assert::string($value, 'The value must be string type.');
         Assert::uuid($value, 'The value must be UUID type.');
 
         $this->value = $value;

@@ -31,8 +31,9 @@ class GoodsTransformerFetcher
 
     private function convertGoodsTransformerToArray(GoodsTransformer $goodsTransformer): array
     {
+        $idType = $goodsTransformer->getId();
         return [
-            'id' => $goodsTransformer->getId()->getValue(),
+            'id' => $idType ? $idType->getValue(): null,
             'uuid' => $goodsTransformer->getUuid()->getValue(),
             'created_at' => $goodsTransformer->getCreatedAt()->format(FormatHelper::FRONTEND_DATE_FORMAT),
         ];

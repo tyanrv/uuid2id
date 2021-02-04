@@ -31,8 +31,9 @@ class UserTransformerFetcher
 
     private function convertUserTransformerToArray(UserTransformer $userTransformer): array
     {
+        $idType = $userTransformer->getId();
         return [
-            'id' => $userTransformer->getId()->getValue(),
+            'id' => $idType ? $idType->getValue() : null,
             'uuid' => $userTransformer->getUuid()->getValue(),
             'created_at' => $userTransformer->getCreatedAt()->format(FormatHelper::FRONTEND_DATE_FORMAT),
         ];

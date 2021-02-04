@@ -17,12 +17,13 @@ use Doctrine\ORM\Mapping as ORM;
 class UserTransformer
 {
     /**
+     * @psalm-suppress PropertyNotSetInConstructor
      * @ORM\Id
      * @ORM\Column(type="id_type", unique=true)
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="user_transformer_seq", initialValue=1, allocationSize=1)
      */
-    private IdType $id;
+    private ?IdType $id;
     /**
      * @ORM\Column(type="uuid_type", unique=true)
      */
